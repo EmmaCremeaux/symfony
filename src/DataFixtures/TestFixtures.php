@@ -349,15 +349,14 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
             $tagsCount = random_int(1, 4);
             $shortList = $this->faker->randomElements($tags, $tagsCount);
-
             foreach ($shortList as $tag) {
                 $student->addTag($tag);
-            
-                $student->setUser($user);
-                $this->manager->persist($student);
             }
 
-            $this->manager->flush();
+            $student->setUser($user);
+            $this->manager->persist($student);
+
         }
+        $this->manager->flush();
     }
 }
