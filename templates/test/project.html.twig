@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block body %}
+<h1> {{ title }} </h1>
+
+<h2> {{ project.name }} (id {{project.id}}) </h2>
+<p>
+{{ project.description }} <br>  
+Date de debut {{ project.startDate|date("y/m/d")}} <br>
+Date de check {{ project.checkpointDate|date("y/m/d")}} <br>
+Date de livraison {{ project.deliveryDate|date("y/m/d")}}
+</p>
+
+{% for project in projects %}
+<h2> {{ project.name }} (id {{project.id}}) </h2>
+<p>
+{{ project.description }} <br>
+Date de debut {{ project.startDate|date("y/m/d")}} <br>
+Date de check {{ project.checkpointDate|date("y/m/d")}} <br>
+Date de livraison {{ project.deliveryDate|date("y/m/d")}}
+</p>
+
+{% endfor %}
+
+{% endblock %}
+
