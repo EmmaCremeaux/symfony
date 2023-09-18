@@ -64,7 +64,7 @@ class TestController extends AbstractController
         // Récuperation du student dont l'id est 1
         $student1 = $repositoryStudent->find(1);
         // Association du tag 4 au student 1
-        $student1->addTag($tag4);
+        $tag4->addStudent($student1);
         $em->flush();
 
         // Récupération d'un tag dont le nom est CSS
@@ -90,6 +90,17 @@ class TestController extends AbstractController
         // Récupération de la liste complète des objets
         $tags = $repositoryTag->findAll();
 
+        // Récupération des tags qui contiennent certain mot-clés
+        $keywordTags1 = $repositoryTag->findByKeyword('html');
+        $keywordTags2 = $repositoryTag->findByKeyword('exercitationem');
+        // $keywordTags3 = $repositoryTag->findByKeyword('foo');
+
+        // Récupération de tags a partir d'une schoolYear
+        $repositorySchoolYear = $em->getRepository(schoolYear::class);
+        $schoolYear1 = $repositorySchoolYear->find(1);
+        $schoolYearTags = $repositoryTag->findBySchoolYear($schoolYear1);
+
+    
         $title = 'Test des tags';
 
         return $this->render('test/tag.html.twig', [
@@ -99,6 +110,10 @@ class TestController extends AbstractController
             'cssTag' => $cssTag,
             'nullDescriptionTags' => $nullDescriptionTags,
             'notNullDescriptionTags' => $notNullDescriptionTags,
+            'keywordTags1' => $keywordTags1,
+            'keywordTags2' => $keywordTags2,
+            // 'keywordTags3' => $keywordTags3,
+            'schoolYearTags' => $schoolYearTags,
         ]);
     }
 

@@ -43,4 +43,35 @@
 </p>
 {% endfor %}
 
+
+<h2>filtre avec html</h2>
+{% for tag in keywordTags1 %}
+<h3> {{ tag.name}} (id {{tag.id}} ) </h3>
+<p> {{tag.description}} </p>
+{% endfor %}
+
+<h2>filtre avec exercitationem</h2>
+{% for tag in keywordTags2 %}
+<h3> {{ tag.name}} (id {{tag.id}} ) </h3>
+<p> {{tag.description}} </p>
+{% endfor %}
+
+{# {% for tag in keywordTags3 %}
+<h2>filtre avec foo</h2>
+<h3> {{ tag.name}} (id {{tag.id}} ) </h3>
+<p> {{tag.description}} </p>
+{% endfor %} #}
+
+<h2>Liste des tags d'une SchoolYear</h2>
+{% for tag in schoolYearTags %}
+<h3> {{ tag.name}} (id {{tag.id}} ) </h3>
+<p> {{tag.description}} </p>
+{% endfor %}
+
+<h2>Liste des student du tag 4</h2>
+<ul>
+{% for student in tag.students %}
+    <li>{{ student.firstName }} {{ student.lastName }} (id {{student.id}} )</li>
+{% endfor %}
+</ul>
 {% endblock %}
