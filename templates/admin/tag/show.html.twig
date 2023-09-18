@@ -24,7 +24,7 @@
                 <td>
                     {% for project in tag.projects %}
                     {# on met une condition pour afficher la virgule que si on est pas dans le dernier élément de la boucle (loop.last) #}
-                    <a href="{{ path('app_project_show', {id: project.id }) }}">{{ project.name }}</a>{% if not loop.last %},{% endif %}
+                    <a href="{{ path('app_admin_project_show', {id: project.id }) }}">{{ project.name }}</a>{% if not loop.last %},{% endif %}
                     {% endfor %}
                 </td>
             </tr>
@@ -43,9 +43,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_tag_index') }}">back to list</a>
+    <a href="{{ path('app_admin_tag_index') }}">back to list</a>
 
-    <a href="{{ path('app_tag_edit', {'id': tag.id}) }}">edit</a>
+    <a href="{{ path('app_admin_tag_edit', {'id': tag.id}) }}">edit</a>
 
-    {{ include('tag/_delete_form.html.twig') }}
+    {{ include('admin/tag/_delete_form.html.twig') }}
 {% endblock %}
