@@ -14,13 +14,9 @@ class StudentType extends AbstractType
         $builder
             ->add('firstName')
             ->add('lastName')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('deletedAt')
             ->add('schoolYear')
             ->add('tags')
             ->add('projects')
-            ->add('user')
         ;
     }
 

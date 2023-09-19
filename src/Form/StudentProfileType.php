@@ -2,27 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\SchoolYear;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SchoolYearType extends AbstractType
+class StudentProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('description')
-            ->add('startDate')
-            ->add('endDate')
+            ->add('email')
+            ->add('student', StudentType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => SchoolYear::class,
+            'data_class' => User::class,
         ]);
     }
 }

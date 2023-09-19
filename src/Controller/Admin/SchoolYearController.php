@@ -78,4 +78,6 @@ class SchoolYearController extends AbstractController
 
         return $this->redirectToRoute('app_admin_school_year_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    
 }
