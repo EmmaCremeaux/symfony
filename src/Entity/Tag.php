@@ -3,16 +3,20 @@
 namespace App\Entity;
 
 use App\Repository\TagRepository;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: TagRepository::class)]
 #[Gedmo\SoftDeleteable(fieldName: "deletedAt", timeAware: false, hardDelete: false)]
+#[UniqueEntity('name')]
 class Tag
 {
     use TimestampableEntity;
@@ -23,9 +27,12 @@ class Tag
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Length(min: 2, max: 100)]
+    #[Assert\NotBlank]
     #[ORM\Column(length: 190)]
     private ?string $name = null;
 
+    #[Assert\Length(max: 500)]
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 

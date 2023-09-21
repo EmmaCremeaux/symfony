@@ -3,13 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\ProjectRepository;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
 #[Gedmo\SoftDeleteable(fieldName: "deletedAt", timeAware: false, hardDelete: false)]
@@ -23,27 +24,36 @@ class Project
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Length(min: 2, max: 100)]
+    #[Assert\NotBlank]
     #[ORM\Column(length: 190)]
     private ?string $name = null;
 
+    #[Assert\Length(max: 500)]
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
+    #[Assert\Length(min: 2, max: 100)]
+    #[Assert\NotBlank]
     #[ORM\Column(length: 190)]
     private ?string $clientName = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $startDate = null;
 
+    #[Assert\GreaterThan(propertyPath: 'startDate')]
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $checkpointDate = null;
 
+    #[Assert\GreaterThan(propertyPath: 'checkpointDate')]
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $deliveryDate = null;
 
+    #[Assert\Count(max: 25)]
     #[ORM\ManyToMany(targetEntity: Student::class, mappedBy: 'projects')]
     private Collection $students;
 
+    #[Assert\Count(min: 3, max: 6)]
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'projects')]
     private Collection $tags;
 
