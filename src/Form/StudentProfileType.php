@@ -13,7 +13,13 @@ class StudentProfileType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('student', StudentType::class)
+            ->add('student', StudentType::class, [
+                // sélecteur du titre de l'encadré
+                // 'label_attr' => [
+                //     'class' => 'd-none'
+                // ],
+                'label' => false
+            ])
         ;
     }
 
