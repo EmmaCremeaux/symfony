@@ -62,11 +62,10 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         
         } else {
             // L'utilisateur est un student
-            $student = $user->getStudent();
 
             // Redirection vers la page profile : 
             return new RedirectResponse($this->urlGenerator->generate('app_profile_show', [
-                'id' => $student->getId(),
+                'id' => $user->getId(),
             ]));
         }
     }

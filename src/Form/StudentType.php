@@ -33,6 +33,7 @@ class StudentType extends AbstractType
                         ->addOrderBy('s.startDate', 'ASC');
                 },
             ])
+
             ->add('tags', EntityType::class, [
                 'class' => Tag::class,
                 'choice_label' => function (Tag $tag) {
@@ -45,6 +46,7 @@ class StudentType extends AbstractType
                         ->orderBy('t.name', 'ASC');
                 },
             ])
+            
             ->add('projects', EntityType::class, [
                 'class' => Project::class,
                 'choice_label' => function (Project $project) {

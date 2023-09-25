@@ -1,8 +1,16 @@
+@import "./custom.scss";
+
 body {
-    background-color: lightgray;
+    background-color: $primary;
+    color: $secondary;
 }
 
-.form_scrollable-checkboxes {
+a {
+    text-decoration: none;
+    color: $secondary;
+}
+
+.form_scrollable-checkboxes {   
     height: 10rem;
     width: 400px;
     overflow: scroll;
@@ -15,4 +23,11 @@ body {
 
 .mb-3 {
     border: none;
+}
+
+.bonjour {
+    width: 350px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

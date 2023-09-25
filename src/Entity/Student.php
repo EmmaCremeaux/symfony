@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: StudentRepository::class)]
 #[Gedmo\SoftDeleteable(fieldName: "deletedAt", timeAware: false, hardDelete: false)]
@@ -35,6 +36,7 @@ class Student
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'students')]
     private Collection $tags;
 
+    #[Assert\Count(max: 1)]
     #[ORM\ManyToMany(targetEntity: Project::class, inversedBy: 'students')]
     private Collection $projects;
 
